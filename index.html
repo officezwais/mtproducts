@@ -16,7 +16,7 @@
             --text-color: #30463A;     
             --accent-color: #6b7e38; 
             --white: #ffffff;
-            --glass: rgba(238, 236, 225, 0.9); /* Slightly more opaque for mobile readabilty */
+            --glass: rgba(238, 236, 225, 0.9);
             --border-color: rgba(48, 70, 58, 0.15);
             --container: 1280px;
         }
@@ -31,14 +31,14 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden; /* Prevent horizontal scroll globally */
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 { 
             font-weight: 800; 
             letter-spacing: -0.03em;
             text-transform: uppercase;
-            word-wrap: break-word; /* FIX: Prevents long words from breaking layout */
+            word-wrap: break-word;
             hyphens: auto;
         }
 
@@ -78,7 +78,7 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: flex-start; 
-            padding-top: 160px; /* PC Padding */
+            padding-top: 160px; 
             text-align: center;
             overflow: hidden;
         }
@@ -86,6 +86,7 @@
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; 
+            /* FIX: Ensure this is aimed at the bottom */
             object-position: bottom center; 
             z-index: -1;
             filter: brightness(0.85); 
@@ -98,7 +99,7 @@
         }
 
         .hero-text h1 {
-            font-size: clamp(2rem, 5vw, 4.5rem); /* Responsive sizing */
+            font-size: clamp(2rem, 5vw, 4.5rem);
             line-height: 1.1;
             color: var(--bg-color);
             margin-bottom: 24px;
@@ -129,7 +130,6 @@
             max-width: var(--container); margin: 0 auto;
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px;
         }
-        /* FIX: Ensure H2 doesn't overflow on mobile */
         .intro h2 { 
             font-size: clamp(1.8rem, 3vw, 2.5rem); 
             margin-bottom: 20px; 
@@ -222,45 +222,41 @@
 
         /* --- MOBILE OPTIMIZATION --- */
         @media(max-width: 900px) {
-            /* 1. Header: More breathing room for video */
             header { 
-                padding-top: 140px; /* Reduced top padding */
+                padding-top: 130px;
                 justify-content: flex-start;
             }
             .hero-text h1 { 
-                font-size: 2.2rem; /* Smaller text so video is visible */
+                /* FIX: Smaller text to see more video */
+                font-size: 1.8rem; 
                 margin-bottom: 15px;
             }
             .hero-text p {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 padding: 0 10px;
             }
 
-            /* 2. Nav: Clean up */
             nav { padding: 15px 20px; }
-            .nav-links { display: none; } /* Hide links on mobile */
+            .nav-links { display: none; }
             
-            /* 3. Intro: Stack Columns & Fix Heading Overflow */
             .intro { padding: 60px 20px; }
             .intro-container { grid-template-columns: 1fr; gap: 30px; }
             .intro h2 { 
                 font-size: 1.8rem; 
-                word-break: break-word; /* Crucial fix for long German words */
+                word-break: break-word;
                 overflow-wrap: break-word;
             }
 
-            /* 4. Products: Single Column */
             .products { padding: 60px 20px; }
             .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; gap: 15px; }
             .wide, .tall { grid-column: span 1; grid-row: span 1; }
 
-            /* 5. About: Stack */
             .about { grid-template-columns: 1fr; }
-            .about-img { height: 300px; min-height: auto; }
+            /* FIX: Increased height for mobile about image so it's not cut off */
+            .about-img { height: 500px; min-height: auto; }
             .about-content { padding: 40px 20px; }
             .stat-grid { flex-direction: column; gap: 20px; }
 
-            /* 6. Contact: Stack Inputs */
             .contact { padding: 60px 20px; }
             .input-group { grid-template-columns: 1fr; }
         }
