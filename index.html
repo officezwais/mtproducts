@@ -16,7 +16,7 @@
             --text-color: #30463A;     
             --accent-color: #6b7e38; 
             --white: #ffffff;
-            --glass: rgba(238, 236, 225, 0.85);
+            --glass: rgba(238, 236, 225, 0.9); /* Slightly more opaque for mobile readabilty */
             --border-color: rgba(48, 70, 58, 0.15);
             --container: 1280px;
         }
@@ -31,19 +31,22 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Prevent horizontal scroll globally */
         }
 
         h1, h2, h3, h4 { 
             font-weight: 800; 
-            letter-spacing: -0.03em; /* Tight tracking for modern feel */
+            letter-spacing: -0.03em;
             text-transform: uppercase;
+            word-wrap: break-word; /* FIX: Prevents long words from breaking layout */
+            hyphens: auto;
         }
 
         p { color: rgba(48, 70, 58, 0.8); font-size: 1.05rem; }
 
         a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
 
-        /* --- 2. NAVIGATION (Functional Glass) --- */
+        /* --- 2. NAVIGATION --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 20px 40px;
@@ -52,9 +55,10 @@
             background: var(--glass);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
+            transition: padding 0.3s;
         }
 
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.05em; }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.05em; white-space: nowrap; }
 
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
@@ -65,7 +69,6 @@
             padding: 10px 20px; border-radius: 6px;
             font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
         }
-        .cta-btn:hover { background: var(--accent-color); }
 
         /* --- 3. HERO SECTION --- */
         header {
@@ -74,8 +77,8 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            justify-content: flex-start; /* Align Top */
-            padding-top: 140px; /* Push text down from Nav */
+            justify-content: flex-start; 
+            padding-top: 160px; /* PC Padding */
             text-align: center;
             overflow: hidden;
         }
@@ -83,9 +86,9 @@
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; 
-            object-position: bottom center; /* Show bottom of video */
+            object-position: bottom center; 
             z-index: -1;
-            filter: brightness(0.85); /* Slight dim for text readability */
+            filter: brightness(0.85); 
         }
 
         .hero-text {
@@ -95,7 +98,7 @@
         }
 
         .hero-text h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive huge text */
+            font-size: clamp(2rem, 5vw, 4.5rem); /* Responsive sizing */
             line-height: 1.1;
             color: var(--bg-color);
             margin-bottom: 24px;
@@ -109,7 +112,6 @@
             color: var(--bg-color);
         }
 
-        /* Running Ticker */
         .ticker-wrap {
             position: absolute; bottom: 0; width: 100%;
             background: var(--text-color); color: var(--bg-color);
@@ -127,9 +129,14 @@
             max-width: var(--container); margin: 0 auto;
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px;
         }
-        .intro h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        /* FIX: Ensure H2 doesn't overflow on mobile */
+        .intro h2 { 
+            font-size: clamp(1.8rem, 3vw, 2.5rem); 
+            margin-bottom: 20px; 
+            line-height: 1.2;
+        }
         
-        /* --- 5. PRODUCTS (Bento Grid - Clean) --- */
+        /* --- 5. PRODUCTS --- */
         .products { padding: 120px 40px; }
         .grid-header { 
             max-width: var(--container); margin: 0 auto 60px; 
@@ -145,36 +152,26 @@
         }
 
         .card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.4s ease;
+            background: #fff; border-radius: 12px; overflow: hidden;
+            position: relative; transition: transform 0.4s ease;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
-
         .card:hover { transform: translateY(-5px); }
-
         .card img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.6s ease;
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;
         }
         .card:hover img { transform: scale(1.05); }
-
         .card-info {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            padding: 24px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;
         }
         .card-info h3 { font-size: 1.1rem; margin-bottom: 4px; }
         .card-info span { font-size: 0.8rem; font-weight: 500; opacity: 0.9; text-transform: uppercase; }
 
-        /* Grid Spans */
         .wide { grid-column: span 2; }
         .tall { grid-row: span 2; }
 
-        /* --- 6. ABOUT (Split) --- */
+        /* --- 6. ABOUT --- */
         .about {
             display: grid; grid-template-columns: 1fr 1fr;
             min-height: 80vh;
@@ -188,16 +185,16 @@
             display: flex; flex-direction: column; justify-content: center;
             background: var(--white);
         }
-        .about-content h2 { font-size: 3rem; margin-bottom: 30px; }
+        .about-content h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px; }
         
         .stat-grid { display: flex; gap: 40px; margin-top: 40px; padding-top: 40px; border-top: 1px solid #eee; }
         .stat strong { display: block; font-size: 2rem; color: var(--accent-color); font-weight: 800; }
         .stat span { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: #888; }
 
-        /* --- 7. CONTACT (Modern Form) --- */
+        /* --- 7. CONTACT --- */
         .contact { padding: 120px 40px; background: var(--text-color); color: var(--bg-color); }
         .contact-wrap { max-width: 800px; margin: 0 auto; }
-        .contact h2 { font-size: 3rem; margin-bottom: 10px; color: white; }
+        .contact h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 10px; color: white; }
         
         .form-grid { margin-top: 60px; display: grid; gap: 20px; }
         .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -205,8 +202,7 @@
         input, textarea {
             width: 100%; background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 16px; color: white; font-family: 'Inter'; font-size: 1rem;
-            border-radius: 6px;
+            padding: 16px; color: white; font-family: 'Inter'; font-size: 1rem; border-radius: 6px;
         }
         input:focus, textarea:focus { outline: none; border-color: var(--accent-color); background: rgba(255,255,255,0.1); }
         textarea { height: 150px; resize: none; }
@@ -215,9 +211,7 @@
             background: var(--accent-color); color: white; border: none;
             padding: 18px; width: 100%; border-radius: 6px;
             font-weight: 700; text-transform: uppercase; cursor: pointer;
-            transition: background 0.3s;
         }
-        .submit-btn:hover { background: #55662b; }
 
         footer {
             padding: 40px; text-align: center; font-size: 0.8rem; color: #666;
@@ -226,14 +220,49 @@
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+        /* --- MOBILE OPTIMIZATION --- */
         @media(max-width: 900px) {
-            .hero-text h1 { font-size: 2.8rem; }
-            .intro-container, .about, .input-group { grid-template-columns: 1fr; }
-            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
+            /* 1. Header: More breathing room for video */
+            header { 
+                padding-top: 140px; /* Reduced top padding */
+                justify-content: flex-start;
+            }
+            .hero-text h1 { 
+                font-size: 2.2rem; /* Smaller text so video is visible */
+                margin-bottom: 15px;
+            }
+            .hero-text p {
+                font-size: 0.95rem;
+                padding: 0 10px;
+            }
+
+            /* 2. Nav: Clean up */
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; } /* Hide links on mobile */
+            
+            /* 3. Intro: Stack Columns & Fix Heading Overflow */
+            .intro { padding: 60px 20px; }
+            .intro-container { grid-template-columns: 1fr; gap: 30px; }
+            .intro h2 { 
+                font-size: 1.8rem; 
+                word-break: break-word; /* Crucial fix for long German words */
+                overflow-wrap: break-word;
+            }
+
+            /* 4. Products: Single Column */
+            .products { padding: 60px 20px; }
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; gap: 15px; }
             .wide, .tall { grid-column: span 1; grid-row: span 1; }
-            .about-img { height: 400px; }
-            nav { padding: 20px; }
-            .nav-links { display: none; }
+
+            /* 5. About: Stack */
+            .about { grid-template-columns: 1fr; }
+            .about-img { height: 300px; min-height: auto; }
+            .about-content { padding: 40px 20px; }
+            .stat-grid { flex-direction: column; gap: 20px; }
+
+            /* 6. Contact: Stack Inputs */
+            .contact { padding: 60px 20px; }
+            .input-group { grid-template-columns: 1fr; }
         }
     </style>
 </head>
