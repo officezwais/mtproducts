@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MT Products | Bespoke Sourcing</title>
+    <title>Werbemittel Import GmbH | Ihr Partner für Werbeartikel</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. SETTINGS --- */
+        /* --- SETTINGS --- */
         :root {
             --bg-color: #EEECE1;       
             --text-color: #30463A;     
@@ -22,9 +22,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         html { scroll-behavior: smooth; font-size: 16px; }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -35,18 +33,13 @@
         }
 
         h1, h2, h3, h4 { 
-            font-weight: 800; 
-            letter-spacing: -0.03em;
-            text-transform: uppercase;
-            word-wrap: break-word;
-            hyphens: auto;
+            font-weight: 800; letter-spacing: -0.03em; text-transform: uppercase;
+            word-wrap: break-word; hyphens: auto;
         }
-
         p { color: rgba(48, 70, 58, 0.8); font-size: 1.05rem; }
-
         a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
 
-        /* --- 2. NAVIGATION --- */
+        /* --- NAVIGATION --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 20px 40px;
@@ -55,10 +48,10 @@
             background: var(--glass);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
-            transition: padding 0.3s;
         }
 
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.05em; white-space: nowrap; }
+        .logo-container { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+        .logo-img { height: 50px; width: auto; }
 
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
@@ -70,47 +63,28 @@
             font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
         }
 
-        /* --- 3. HERO SECTION --- */
+        /* --- HERO --- */
         header {
-            height: 100vh; 
-            position: relative; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-start; 
-            padding-top: 160px; 
-            text-align: center;
-            overflow: hidden;
+            height: 100vh; position: relative; display: flex; flex-direction: column; 
+            align-items: center; justify-content: flex-start; padding-top: 160px; 
+            text-align: center; overflow: hidden;
         }
-
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; 
-            /* FIX: Ensure this is aimed at the bottom */
-            object-position: bottom center; 
-            z-index: -1;
-            filter: brightness(0.85); 
+            object-fit: cover; object-position: bottom center; 
+            z-index: -1; filter: brightness(0.85); 
         }
-
-        .hero-text {
-            max-width: 900px;
-            padding: 0 20px;
-            z-index: 2;
-        }
-
+        .hero-text { max-width: 900px; padding: 0 20px; z-index: 2; }
+        
         .hero-text h1 {
-            font-size: clamp(2rem, 5vw, 4.5rem);
-            line-height: 1.1;
-            color: var(--bg-color);
+            font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.1;
+            color: var(--bg-color); 
             margin-bottom: 24px;
         }
-
         .hero-text p {
-            font-size: 1.1rem;
-            font-weight: 500;
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--bg-color);
+            font-size: 1.1rem; font-weight: 500; max-width: 700px;
+            margin: 0 auto; 
+            color: var(--bg-color); 
         }
 
         .ticker-wrap {
@@ -118,145 +92,82 @@
             background: var(--text-color); color: var(--bg-color);
             padding: 12px 0; overflow: hidden; white-space: nowrap;
         }
-        .ticker { display: inline-block; animation: scroll 30s linear infinite; }
+        /* Animation: Muss exakt bei -50% enden, da der Inhalt verdoppelt ist */
+        .ticker { display: inline-block; animation: scroll 60s linear infinite; }
         .ticker span { margin: 0 30px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; }
 
-        /* --- 4. INTRO SECTION --- */
-        .intro {
-            padding: 120px 40px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .intro-container {
-            max-width: var(--container); margin: 0 auto;
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px;
-        }
-        .intro h2 { 
-            font-size: clamp(1.8rem, 3vw, 2.5rem); 
-            margin-bottom: 20px; 
-            line-height: 1.2;
-        }
-        
-        /* --- 5. PRODUCTS --- */
-        .products { padding: 120px 40px; }
-        .grid-header { 
-            max-width: var(--container); margin: 0 auto 60px; 
-            display: flex; justify-content: space-between; align-items: flex-end;
-        }
-        
-        .bento-grid {
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            grid-auto-rows: 300px; 
-            gap: 24px;
-            max-width: var(--container); margin: 0 auto;
-        }
+        /* --- SECTIONS --- */
+        .intro { padding: 120px 40px; border-bottom: 1px solid var(--border-color); }
+        .intro-container { max-width: var(--container); margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; }
+        .intro h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 20px; line-height: 1.2; }
 
+        .products { padding: 120px 40px; }
+        .grid-header { max-width: var(--container); margin: 0 auto 60px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); 
+            grid-auto-rows: 350px; gap: 24px; max-width: var(--container); margin: 0 auto;
+        }
         .card {
             background: #fff; border-radius: 12px; overflow: hidden;
             position: relative; transition: transform 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); cursor: pointer;
         }
         .card:hover { transform: translateY(-5px); }
-        .card img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;
-        }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
         .card:hover img { transform: scale(1.05); }
         .card-info {
             position: absolute; bottom: 0; left: 0; width: 100%; padding: 24px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white;
         }
         .card-info h3 { font-size: 1.1rem; margin-bottom: 4px; }
         .card-info span { font-size: 0.8rem; font-weight: 500; opacity: 0.9; text-transform: uppercase; }
-
         .wide { grid-column: span 2; }
-        .tall { grid-row: span 2; }
 
-        /* --- 6. ABOUT --- */
-        .about {
-            display: grid; grid-template-columns: 1fr 1fr;
-            min-height: 80vh;
-        }
-        .about-img {
-            background: url('about.png') no-repeat center center/cover;
-            min-height: 400px;
-        }
-        .about-content {
-            padding: 80px 60px;
-            display: flex; flex-direction: column; justify-content: center;
-            background: var(--white);
-        }
+        .about { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
+        .about-img { background: url('about.png') no-repeat center center/cover; min-height: 400px; }
+        .about-content { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
         .about-content h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px; }
-        
         .stat-grid { display: flex; gap: 40px; margin-top: 40px; padding-top: 40px; border-top: 1px solid #eee; }
-        .stat strong { display: block; font-size: 2rem; color: var(--accent-color); font-weight: 800; }
+        .stat strong { display: block; font-size: 1.2rem; color: var(--accent-color); font-weight: 800; margin-bottom: 5px; }
         .stat span { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: #888; }
 
-        /* --- 7. CONTACT --- */
         .contact { padding: 120px 40px; background: var(--text-color); color: var(--bg-color); }
         .contact-wrap { max-width: 800px; margin: 0 auto; }
         .contact h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 10px; color: white; }
-        
         .form-grid { margin-top: 60px; display: grid; gap: 20px; }
         .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        
         input, textarea {
-            width: 100%; background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
             padding: 16px; color: white; font-family: 'Inter'; font-size: 1rem; border-radius: 6px;
         }
         input:focus, textarea:focus { outline: none; border-color: var(--accent-color); background: rgba(255,255,255,0.1); }
         textarea { height: 150px; resize: none; }
-
         .submit-btn {
-            background: var(--accent-color); color: white; border: none;
-            padding: 18px; width: 100%; border-radius: 6px;
-            font-weight: 700; text-transform: uppercase; cursor: pointer;
+            background: var(--accent-color); color: white; border: none; padding: 18px; width: 100%;
+            border-radius: 6px; font-weight: 700; text-transform: uppercase; cursor: pointer;
         }
 
-        footer {
-            padding: 40px; text-align: center; font-size: 0.8rem; color: #666;
-            border-top: 1px solid #ddd;
-        }
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #666; border-top: 1px solid #ddd; }
+        footer a { color: #444; margin: 0 5px; font-weight: 600; }
+        footer a:hover { color: var(--accent-color); }
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- MOBILE OPTIMIZATION --- */
         @media(max-width: 900px) {
-            header { 
-                padding-top: 130px;
-                justify-content: flex-start;
-            }
-            .hero-text h1 { 
-                /* FIX: Smaller text to see more video */
-                font-size: 1.8rem; 
-                margin-bottom: 15px;
-            }
-            .hero-text p {
-                font-size: 0.9rem;
-                padding: 0 10px;
-            }
-
+            header { padding-top: 130px; justify-content: flex-start; }
+            .hero-text h1 { font-size: 1.8rem; margin-bottom: 15px; }
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
+            .logo-img { height: 30px; }
             
             .intro { padding: 60px 20px; }
             .intro-container { grid-template-columns: 1fr; gap: 30px; }
-            .intro h2 { 
-                font-size: 1.8rem; 
-                word-break: break-word;
-                overflow-wrap: break-word;
-            }
-
             .products { padding: 60px 20px; }
             .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; gap: 15px; }
-            .wide, .tall { grid-column: span 1; grid-row: span 1; }
-
+            .wide { grid-column: span 1; }
             .about { grid-template-columns: 1fr; }
-            /* FIX: Increased height for mobile about image so it's not cut off */
             .about-img { height: 500px; min-height: auto; }
             .about-content { padding: 40px 20px; }
-            .stat-grid { flex-direction: column; gap: 20px; }
-
             .contact { padding: 60px 20px; }
             .input-group { grid-template-columns: 1fr; }
         }
@@ -265,10 +176,12 @@
 <body>
 
     <nav>
-        <div class="logo">MT PRODUCTS.</div>
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="Werbemittel Import GmbH Logo" class="logo-img">
+        </a>
         <div class="nav-links">
-            <a href="#products">Produkte</a>
-            <a href="#about">Unternehmen</a>
+            <a href="#products">Sortiment</a>
+            <a href="#about">Über uns</a>
             <a href="#contact">Kontakt</a>
         </div>
         <a href="#contact" class="cta-btn">Anfrage</a>
@@ -280,22 +193,29 @@
         </video>
 
         <div class="hero-text">
-            <h1>INDIVIDUALITÄT.<br>OHNE KOMPROMISSE.</h1>
-            <p>Wir setzen Ihre Produktidee durch einen persönlichen Werbeträger um. Direkt aus Shenzhen.</p>
+            <h1>VERLÄSSLICHER PARTNER FÜR<br>INNOVATIVE PRODUKTE.</h1>
+            <p>Spezialist für Import und Beschaffung hochwertiger Werbeartikel und Konsumgüter.</p>
         </div>
 
         <div class="ticker-wrap">
             <div class="ticker">
+                <span>Plüschartikel</span> • 
+                <span>Haushaltswaren</span> • 
+                <span>Spielzeuge</span> • 
+                <span>Taschen</span> • 
+                <span>Klein-Elektronik</span> • 
                 <span>Sonderanfertigungen</span> • 
-                <span>Qualitätssicherung</span> • 
+                <span>Nachhaltigkeit</span> • 
                 <span>Logistik</span> • 
-                <span>Import</span> • 
-                <span>Sourcing</span> • 
+                
+                <span>Plüschartikel</span> • 
+                <span>Haushaltswaren</span> • 
+                <span>Spielzeuge</span> • 
+                <span>Taschen</span> • 
+                <span>Klein-Elektronik</span> • 
                 <span>Sonderanfertigungen</span> • 
-                <span>Qualitätssicherung</span> • 
+                <span>Nachhaltigkeit</span> • 
                 <span>Logistik</span> • 
-                <span>Import</span> • 
-                <span>Sourcing</span>
             </div>
         </div>
     </header>
@@ -303,49 +223,68 @@
     <section class="intro">
         <div class="intro-container">
             <div>
-                <h4 style="color:var(--accent-color); margin-bottom:10px; font-size: 0.9rem;">WAS WIR TUN</h4>
-                <h2>Maßgeschneiderte Importlösungen für den Mittelstand.</h2>
+                <h4 style="color:var(--accent-color); margin-bottom:10px; font-size: 0.9rem;">UNSER PROFIL</h4>
+                <h2>Ihr Partner für Qualität und wirtschaftliche Attraktivität.</h2>
             </div>
             <div>
-                <p>Wir benötigen nicht einfach einen Katalog mit bereits umgesetzten Standardartikeln. Wir erschaffen Neues. Von der Skizze bis zur Lieferung an Ihre Haustür.</p>
-                <p style="margin-top: 20px;">Unser Fokus liegt auf Verlässlichkeit, transparenter Kommunikation und zertifizierter Qualität.</p>
+                <p>Die Werbemittel Import GmbH ist ein international tätiges Unternehmen mit fundierter Erfahrung im globalen Handel. Durch unser breit gefächertes Netzwerk an Produktionspartnern verstehen wir uns als verlässlicher Partner für Geschäftskunden.</p>
+                <p style="margin-top: 20px;">Wir liefern innovative Produkte mit hoher Qualität, die exakt auf Ihre Bedürfnisse abgestimmt sind.</p>
             </div>
         </div>
     </section>
 
     <section id="products" class="products">
         <div class="grid-header">
-            <h2>Unser Portfolio</h2>
-            <p>(Auswahl)</p>
+            <h2>Realisierte Projekte</h2>
+            <p>Auszug aus unserem Portfolio</p>
         </div>
 
         <div class="bento-grid">
-            <div class="card wide tall">
-                <img src="https://images.unsplash.com/photo-1558877385-81a1c7e67d72?q=80&w=1000&auto=format&fit=crop" alt="Plüsch">
-                <div class="card-info">
-                    <h3>Plüsch & Toys</h3>
-                    <span>Individuelles Design</span>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=1000&auto=format&fit=crop" alt="Taschen">
-                <div class="card-info">
-                    <h3>Taschen</h3>
-                    <span>Travel & Business</span>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop" alt="Haushalt">
-                <div class="card-info">
-                    <h3>Home & Living</h3>
-                    <span>Haushaltswaren</span>
-                </div>
-            </div>
             <div class="card wide">
-                <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=800&auto=format&fit=crop" alt="Tech">
+                <img src="produkt_pluesch.jpg" alt="Plüschartikel Beispiel">
                 <div class="card-info">
-                    <h3>Technik</h3>
-                    <span>CE Zertifiziert</span>
+                    <h3>Plüsch & Maskottchen</h3>
+                    <span>Individuell & Hochwertig</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="produkt_spielzeug.jpg" alt="Spielwaren Beispiel">
+                <div class="card-info">
+                    <h3>Spiel & Freizeit</h3>
+                    <span>Promotion & Handel</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="produkt_haushalt.jpg" alt="Haushaltswaren Beispiel">
+                <div class="card-info">
+                    <h3>Haushalt & Living</h3>
+                    <span>Praktische Werbeträger</span>
+                </div>
+            </div>
+
+            <div class="card wide">
+                <img src="produkt_taschen.jpg" alt="Taschen Beispiel">
+                <div class="card-info">
+                    <h3>Taschen & Travel</h3>
+                    <span>Standard bis Sonderanfertigung</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="produkt_elektronik.jpg" alt="Elektronik Beispiel">
+                <div class="card-info">
+                    <h3>Technik & Gadgets</h3>
+                    <span>Funktionalität ohne Stecker</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="produkt_sonder.jpg" alt="Sonderanfertigungen Beispiel">
+                <div class="card-info">
+                    <h3>Sonderanfertigungen</h3>
+                    <span>Exakte Entwicklung nach Kundenwunsch</span>
                 </div>
             </div>
         </div>
@@ -354,19 +293,23 @@
     <section id="about" class="about">
         <div class="about-img"></div>
         <div class="about-content">
-            <h4 style="color:var(--accent-color); margin-bottom:10px; font-size: 0.9rem;">UNSER ANSATZ</h4>
-            <h2>Mehr als nur Import.</h2>
-            <p>Natürlich liefern wir Ihnen auch Standards. Aber unsere Leidenschaft ist das Sourcing von einzigartigen Werbeträgern auf den Märkten in Asien und Osteuropa.</p>
-            <p style="margin-top:20px">Unser Einkaufsbüro in Shenzhen (China) übernimmt die Produktionsüberwachung und kümmert sich um alle Standards und Zertifizierungen.</p>
+            <h4 style="color:var(--accent-color); margin-bottom:10px; font-size: 0.9rem;">PHILOSOPHIE</h4>
+            <h2>Verantwortung & Logistik.</h2>
+            <p>Ein wesentlicher Bestandteil unserer Philosophie ist die Nachhaltigkeit. Wir arbeiten bevorzugt mit Produzenten, die auf umweltfreundliche Materialien und faire Arbeitsbedingungen setzen.</p>
+            <p style="margin-top:20px">Unsere Kunden profitieren von einem professionellen Rundum-Service: von der Qualitätskontrolle bis zur termingerechten Lieferung.</p>
 
             <div class="stat-grid">
                 <div class="stat">
-                    <strong>15+</strong>
-                    <span>Jahre Erfahrung</span>
+                    <strong>Nachhaltig</strong>
+                    <span>Ressourcenschonend</span>
                 </div>
                 <div class="stat">
-                    <strong>CN</strong>
-                    <span>Office Shenzhen</span>
+                    <strong>Global</strong>
+                    <span>Zuverlässige Logistik</span>
+                </div>
+                <div class="stat">
+                    <strong>Transparent</strong>
+                    <span>Klare Prozesse</span>
                 </div>
             </div>
         </div>
@@ -374,8 +317,8 @@
 
     <section id="contact" class="contact">
         <div class="contact-wrap">
-            <h2>Projekt starten.</h2>
-            <p style="color:rgba(255,255,255,0.6)">Senden Sie uns Ihre Produktspezifikationen oder vereinbaren Sie einen Termin.</p>
+            <h2>Mehrwert schaffen.</h2>
+            <p style="color:rgba(255,255,255,0.6)">Wir entwickeln individuelle Lösungen für Sie. Kontaktieren Sie uns.</p>
 
             <form class="form-grid">
                 <div class="input-group">
@@ -386,7 +329,7 @@
                     <input type="email" placeholder="E-Mail Adresse *" required>
                     <input type="tel" placeholder="Telefon">
                 </div>
-                <textarea placeholder="Ihr Anliegen / Produktidee..."></textarea>
+                <textarea placeholder="Ihr Anliegen / Produktanfrage..."></textarea>
                 
                 <div style="font-size:0.8rem; color:rgba(255,255,255,0.5)">
                     <input type="checkbox" style="width:auto; margin-right:10px" required> Ich akzeptiere die Datenschutzbestimmungen.
@@ -398,7 +341,11 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 MT Products GmbH | Impressum | Datenschutz</p>
+        <p>
+            &copy; 2026 Werbemittel Import GmbH 
+            <br><br>
+            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+        </p>
     </footer>
 
 </body>
